@@ -85,4 +85,18 @@ defmodule Tipos do
     IO.puts elem tupla, 2
     IO.puts elem tupla, 4
   end
+
+  #   Lista convencional, mas com apenas dados binários ou listas de
+  #   dados binários. Quando encaminhada para uma interface IO, a
+  #   lista se torna plana.
+  def ver_lista_io do
+    lista_io = []
+    lista_io = [lista_io, "Ola"]
+    lista_io = [lista_io, " mundo"]
+    lista_io = [lista_io, " via"]
+    lista_io = [lista_io, " lista"]
+    lista_io = [lista_io, " IO!"]
+
+    IO.puts lista_io
+  end
 end
