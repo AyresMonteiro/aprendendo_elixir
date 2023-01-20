@@ -10,14 +10,14 @@ defmodule Tipos do
   #   Pode ser escrito de forma decimal. Ex: 1.
   #   Pode ser escrito de forma hexadecimal. Ex: 0x1F.
 
-  def verInteiro do
+  def ver_inteiro do
     inteiro = 8
     IO.puts inteiro
   end
 
   # Float -> Ex: 1.0.
 
-  def verDecimal do
+  def ver_decimal do
     decimal = 2.0
     IO.puts decimal
   end
@@ -27,14 +27,14 @@ defmodule Tipos do
   #   próprio nome. Dessa forma, :banana tem o valor banana.
   #   Você ode usar is_atom() para checar se um dado é um átomo.
 
-  def verAtomo do
+  def ver_atomo do
     atomo = :teste
     IO.puts atomo
   end
 
   # Boolean -> true, false. Todo boolean é um :atom.
 
-  def verBooleano do
+  def ver_booleano do
     booleano = true
     IO.puts booleano
   end
@@ -44,7 +44,7 @@ defmodule Tipos do
   #   Ex: "E quando você me disser oi, eu vou responder oi, com meu peito
   #   gritando te amo". É possível interpolar strings.
 
-  def verStrings do
+  def ver_strings do
     caracteres = "Testezinho brabo"
     interpolacao = "Veja: #{caracteres}"
     IO.puts caracteres
@@ -58,7 +58,7 @@ defmodule Tipos do
   #   para que o Elixir não confunda ela com um função nomeada como funcao.
   #   Funções anônimas podem usar funções já previamente definidas.
 
-  def testarFuncao do
+  def testar_funcao do
     funcao = fn a,b -> a - b end
     IO.puts funcao.(5,3)
     dobrar = fn a -> funcao.(3 * a, a) end
@@ -70,7 +70,7 @@ defmodule Tipos do
   #   Ex: [1, 2, 3].
   #   Imprime a lista como caracteres.
 
-  def verLista do
+  def ver_lista do
     lista = [111, 105, 12]
     IO.puts lista
   end
@@ -79,7 +79,7 @@ defmodule Tipos do
   #   Quase como os mixed arrays de JS, só que declarado com chaves.
   #   Ex: {1, 2, "teste", 5}
 
-  def verTupla do
+  def ver_tupla do
     tupla = {9, 10, :oi, true, "kk eae man"}
     IO.puts elem tupla, 1
     IO.puts elem tupla, 2
