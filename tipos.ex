@@ -5,6 +5,12 @@ defmodule Tipos do
     Usarei a função IO.puts para mostrar os dados na tela.
   """
 
+  @atributo 19
+
+  defp ver_item_intervalo(item) do
+    IO.puts "item: #{item}"
+  end
+
   @doc """
     Mostra uma váriavel do tipo Inteiro.
 
@@ -92,10 +98,12 @@ defmodule Tipos do
     Definidas por colchetes.
     Ex: [1, 2, 3].
     Imprime a lista como caracteres.
+    Mostra se um valor está dentro da lista.
   """
   def ver_lista do
-    lista = [111, 105, 12]
+    lista = [111, 105]
     IO.puts lista
+    IO.puts 111 in lista
   end
 
   @doc """
@@ -127,5 +135,116 @@ defmodule Tipos do
     lista_io = [lista_io, " IO!"]
 
     IO.puts lista_io
+  end
+
+  @doc """
+    Mostra um atributo do módulo.
+
+    Atributos são valores definidos de forma estática em um módulo
+    durante a compilação.
+  """
+  def ver_atributo do
+    IO.puts @atributo
+  end
+
+  @doc """
+    Mostra um valor nil.
+
+    Nil é similar ao "nulo" de outras linguagens.
+  """
+  def ver_nil do
+    IO.puts nil
+    IO.puts "Nil não tem exibição visual"
+  end
+
+  @doc """
+    Mostra uma variável do tipo mapa.
+
+    Similar aos dicionários do python ou às structs do C.
+  """
+  def ver_mapa do
+    mapa1 = %{:chave => :valor}
+    mapa2 = %{chave: :segundo_valor}
+    mapa3 = %{mapa2 | chave: :terceiro_valor}
+    mapa4 = Map.put(mapa3, :segunda_chave, :quarto_valor)
+    mapa5 = Dict.put(mapa4, :terceira_chave, :quinto_valor)
+    IO.puts mapa1[:chave]
+    IO.puts mapa2[:chave]
+    IO.puts mapa3.chave
+    IO.puts mapa4.segunda_chave
+    IO.puts mapa5.terceira_chave
+  end
+
+  @doc """
+    Mostra uma variável do bitstring.
+
+    Cada "caractere" pode ter o tamanho máximo de um byte.
+    Dessa forma, valores acima de 255 são "truncados".
+    É possível escrever em bits específicos usando a notação "::"
+  """
+  def ver_bitstring do
+    bitstring1 = <<1, 2, 3>>
+    bitstring2 = <<0>>
+    bitstring3 = <<256>>
+    bitstring4 = <<1::4, 15::4>>
+
+    IO.puts bitstring1
+    IO.puts bitstring2
+    IO.puts bitstring3
+    IO.puts bitstring4
+    IO.puts bitstring3 == bitstring2
+  end
+
+  @doc """
+    Mostra uma variável do tipo intervalo.
+
+    Intervalos são definidos pela sintaxe inicio..fim.
+  """
+  def ver_intervalo do
+    intervalo = 1..10
+
+    IO.puts 1 in intervalo
+    IO.puts 11 in intervalo
+    1..3 |> Enum.each(&ver_item_intervalo/1)
+  end
+
+  @doc """
+    Mostra uma variável do tipo keyword list.
+
+    Aproximação do tipo map antes do mesmo existir no Erlang.
+  """
+  def ver_keyword_list do
+    k_list = [{:chave, 123}, {:segunda_chave, 124}]
+
+    IO.puts k_list[:chave]
+    IO.puts Keyword.get(k_list, :segunda_chave)
+  end
+
+  @doc """
+    Mostra uma variável do tipo HashDict.
+
+    Dicionário performático para coleções de dados enormes.
+    Ordem dos valores é variável.
+  """
+  def ver_hash_dict do
+    # Conceito de enumerables e collectables aplicado
+    h_dict =  [{:chave, 123}, {:segunda_chave, 124}] |> Enum.into(HashDict.new)
+    outro_h_dict = HashDict.put(h_dict, :terceira_chave, 125)
+
+    IO.puts h_dict[:chave]
+    IO.puts HashDict.get(h_dict, :segunda_chave)
+    IO.puts HashDict.get(outro_h_dict, :terceira_chave)
+  end
+
+  @doc """
+    Mostra uma variável do tipo HashSet.
+
+    Igual ao HashDict, mas ao invés de ser chave-valor é apenas
+    valor.
+  """
+  def ver_hash_set do
+    h_set =  [:primeiro, :segundo] |> Enum.into(HashSet.new)
+
+    IO.puts h_set |> Enum.each(&ver_item_intervalo/1)
   end
 end
